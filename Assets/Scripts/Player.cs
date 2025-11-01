@@ -4,7 +4,7 @@ public class Player : MonoBehaviour
 {
 
     public Rigidbody2D rb2d;
-    public float moveSpeed = 5f;
+    public float moveSpeed = 2f;
     private Vector2 moveInput;
     private Vector2 mouseInput;
     public float mouseSensitivity = 1f;
@@ -12,11 +12,22 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        
+        moveSpeed = 2f;
     }
 
     void Update()
     {
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            moveSpeed = 3f;
+        }
+        else
+        {
+            moveSpeed = 2f;
+        }
+        
+
         //movement crap
         moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         Vector3 moveHorizontal = transform.up * -moveInput.x;
