@@ -1,16 +1,25 @@
 fileFormatVersion: 2
-guid: 97595eaa9b55c85468fd06791b573d51
+guid: 0b1d252245cf3ee48992be7698d7e758
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4178046375966092550
-    second: 4_0
+      213: 2854130955026786153
+    second: Bullet Impact 1_0
   - first:
-      213: 8982099749623107299
-    second: 4_1
+      213: 1059999177426357880
+    second: Bullet Impact 1_1
   - first:
-      213: -2214249495721929474
-    second: 4_2
+      213: -1822351142996183712
+    second: Bullet Impact 1_2
+  - first:
+      213: -4328480133704302287
+    second: Bullet Impact 1_3
+  - first:
+      213: 2132685602867666134
+    second: Bullet Impact 1_4
+  - first:
+      213: 7686119320791973888
+    second: Bullet Impact 1_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -72,9 +81,9 @@ TextureImporter:
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
-  applyGammaDecoding: 1
+  applyGammaDecoding: 0
   swizzle: 50462976
-  cookieLightType: 1
+  cookieLightType: 0
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
@@ -88,25 +97,25 @@ TextureImporter:
     overridden: 0
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Standalone
-    maxTextureSize: 128
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 4_0
+      name: Bullet Impact 1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -114,43 +123,43 @@ TextureImporter:
         width: 33
         height: 31
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 25859434d29fcb84897de152f772e01a
-      internalID: -4178046375966092550
+      spriteID: 96761d45bf8eb9720800000000000000
+      internalID: 2854130955026786153
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 4_1
+      name: Bullet Impact 1_1
       rect:
         serializedVersion: 2
-        x: 34
+        x: 33
         y: 0
-        width: 31
+        width: 33
         height: 31
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 362d22e98f3a083419101b6693ecac9a
-      internalID: 8982099749623107299
+      spriteID: 87e44b0c2afd5be00800000000000000
+      internalID: 1059999177426357880
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 4_2
+      name: Bullet Impact 1_2
       rect:
         serializedVersion: 2
         x: 66
@@ -158,15 +167,15 @@ TextureImporter:
         width: 33
         height: 31
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 5fc666be4f7940746bb7faec2aca659d
-      internalID: -2214249495721929474
+      spriteID: 0657fa96a45b5b6e0800000000000000
+      internalID: -1822351142996183712
       vertices: []
       indices: 
       edges: []
@@ -175,7 +184,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: b2af0c8d6274eac4ba22545931231950
+    spriteID: 2ef4fc4ee5572d345b6440346fbe48d3
     internalID: 0
     vertices: []
     indices: 
@@ -185,9 +194,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      4_0: -4178046375966092550
-      4_1: 8982099749623107299
-      4_2: -2214249495721929474
+      Bullet Impact 1_0: 2854130955026786153
+      Bullet Impact 1_1: 1059999177426357880
+      Bullet Impact 1_2: -1822351142996183712
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -8,7 +8,9 @@ public class Player : MonoBehaviour
     private Vector2 moveInput;
     private Vector2 mouseInput;
     public float mouseSensitivity = 1f;
-    public Transform cam;
+    public Camera cam;
+    public GameObject bulletImpact;
+    public int currentAmmo;
 
     void Start()
     {
@@ -37,6 +39,33 @@ public class Player : MonoBehaviour
         //mouse crap
         mouseInput = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y")) * mouseSensitivity;
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z - mouseInput.x);
-        cam.localRotation = Quaternion.Euler(cam.localRotation.eulerAngles + new Vector3(0f, mouseInput.y, 0f));
+        cam.transform.localRotation = Quaternion.Euler(cam.transform.localRotation.eulerAngles + new Vector3(0f, mouseInput.y, 0f));
+
+        //shooting crap
+        if(Input.GetMouseButton(0))
+        {
+            if(currentAmmo > 0)
+            {
+                Ray ray = cam.ViewportPointToRay(new Vector3(.5f, .5f, 0f));
+                RaycastHit hit;
+                if(Physics.Raycast(ray, out hit))
+                {
+                    Instantiate(bulletImpact, hit.point, transform.rotation);
+                    //Debug.Log("Im looking at " + hit.transform.name);
+                }
+                else
+                {
+                    Debug.Log("Im looking at nothing");
+                }
+                currentAmmo--;
+            }
+        }
+
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            //function
+            //waitforseconds
+            currentAmmo = 200;
+        }
     }
 }
