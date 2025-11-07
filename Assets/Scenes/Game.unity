@@ -492,8 +492,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 506, y: 285}
+  m_AnchoredPosition: {x: 0.000015259, y: -0.00019836}
+  m_SizeDelta: {x: 800, y: 450.59}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1142405357
 MonoBehaviour:
@@ -508,7 +508,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.025577938, g: 0.5188679, b: 0, a: 0.105882354}
+  m_Color: {r: 0.017848026, g: 0.3301887, b: 0, a: 0.105882354}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -549,6 +549,7 @@ GameObject:
   - component: {fileID: 1404850030}
   - component: {fileID: 1404850032}
   - component: {fileID: 1404850031}
+  - component: {fileID: 1404850033}
   m_Layer: 5
   m_Name: roboHands
   m_TagString: Untagged
@@ -572,8 +573,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 62.281, y: -52.9}
-  m_SizeDelta: {x: 381.4375, y: 244.4678}
+  m_AnchoredPosition: {x: 130.62317, y: -64.668}
+  m_SizeDelta: {x: 540, y: 320}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1404850031
 MonoBehaviour:
@@ -613,6 +614,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1404850029}
   m_CullTransparentMesh: 1
+--- !u!95 &1404850033
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404850029}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 45f3bd2e926a1644ab99250ea6914bed, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &1441921571 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 06386c6e2c76a424cade2af9cc6ec392, type: 3}
@@ -666,7 +689,7 @@ RectTransform:
   m_GameObject: {fileID: 1492113226}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1872471611}
@@ -2326,7 +2349,7 @@ GameObject:
   - component: {fileID: 1872471609}
   - component: {fileID: 1872471608}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2361,7 +2384,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -2481,6 +2504,7 @@ MonoBehaviour:
   cam: {fileID: 519420031}
   bulletImpact: {fileID: 7713781200916953058, guid: 23bd69b181cd8164aaba88512f8be06b, type: 3}
   currentAmmo: 200
+  roboAnim: {fileID: 1404850033}
 --- !u!4 &2147429855
 Transform:
   m_ObjectHideFlags: 0

@@ -1,8 +1,10 @@
 using UnityEngine;
+using System.Collections;
 
 public class Player : MonoBehaviour
 {
 
+    public static Player instance;
     public Rigidbody2D rb2d;
     public float moveSpeed = 2f;
     private Vector2 moveInput;
@@ -12,6 +14,14 @@ public class Player : MonoBehaviour
     public GameObject bulletImpact;
     public int currentAmmo;
 
+    public Animator roboAnim;
+
+    private void Awake ()
+    {
+        instance = this;
+    }
+
+
     void Start()
     {
         moveSpeed = 2f;
@@ -20,6 +30,7 @@ public class Player : MonoBehaviour
     void Update()
     {
 
+
         if (Input.GetKey(KeyCode.LeftShift))
         {
             moveSpeed = 3f;
@@ -27,6 +38,11 @@ public class Player : MonoBehaviour
         else
         {
             moveSpeed = 2f;
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            StartCoroutine(ReloadSequence());
         }
         
 
@@ -46,6 +62,7 @@ public class Player : MonoBehaviour
         {
             if(currentAmmo > 0)
             {
+                roboAnim.SetTrigger("isShooting");
                 Ray ray = cam.ViewportPointToRay(new Vector3(.5f, .5f, 0f));
                 RaycastHit hit;
                 if(Physics.Raycast(ray, out hit))
@@ -61,10 +78,15 @@ public class Player : MonoBehaviour
             }
         }
 
-        if(Input.GetKeyDown(KeyCode.R))
+        IEnumerator ReloadSequence()
         {
-            //function
-            //waitforseconds
+            roboAnim.SetTrigger("isReloading");
+            yield return new WaitForSeconds(1.1f);
+            Reload();
+        }
+
+        void Reload()
+        {
             currentAmmo = 200;
         }
     }
