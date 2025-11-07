@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
             moveSpeed = 2f;
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && currentAmmo < 200)
         {
             StartCoroutine(ReloadSequence());
         }
@@ -58,24 +58,25 @@ public class Player : MonoBehaviour
         cam.transform.localRotation = Quaternion.Euler(cam.transform.localRotation.eulerAngles + new Vector3(0f, mouseInput.y, 0f));
 
         //shooting crap
-        if(Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && currentAmmo > 0)
         {
-            if(currentAmmo > 0)
+            roboAnim.SetBool("isShooting", true);
+            Ray ray = cam.ViewportPointToRay(new Vector3(.5f, .5f, 0f));
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
             {
-                roboAnim.SetTrigger("isShooting");
-                Ray ray = cam.ViewportPointToRay(new Vector3(.5f, .5f, 0f));
-                RaycastHit hit;
-                if(Physics.Raycast(ray, out hit))
-                {
-                    Instantiate(bulletImpact, hit.point, transform.rotation);
-                    //Debug.Log("Im looking at " + hit.transform.name);
-                }
-                else
-                {
-                    Debug.Log("Im looking at nothing");
-                }
-                currentAmmo--;
+                Instantiate(bulletImpact, hit.point, transform.rotation);
+                //Debug.Log("Im looking at " + hit.transform.name);
             }
+            else
+            {
+                Debug.Log("Im looking at nothing");
+            }
+            currentAmmo--;
+        }
+        else
+        {
+            roboAnim.SetBool("isShooting", false);
         }
 
         IEnumerator ReloadSequence()
