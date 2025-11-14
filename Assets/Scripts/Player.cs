@@ -67,6 +67,11 @@ public class Player : MonoBehaviour
             {
                 Instantiate(bulletImpact, hit.point, transform.rotation);
                 //Debug.Log("Im looking at " + hit.transform.name);
+
+                if(hit.transform.tag == "Enemy")
+                {
+                    hit.transform.parent.GetComponent<ED209>().TakeDamage();
+                }
             }
             else
             {
@@ -89,6 +94,15 @@ public class Player : MonoBehaviour
         void Reload()
         {
             currentAmmo = 200;
+        }
+
+        if (moveInput != Vector2.zero)
+        {
+            roboAnim.SetBool("isMoving", true);
+        }
+        else
+        {
+            roboAnim.SetBool("isMoving", false);
         }
     }
 }
