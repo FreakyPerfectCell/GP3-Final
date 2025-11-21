@@ -37,4 +37,14 @@ public class ED209 : MonoBehaviour
             //other functions i want to happen
         }
     }
+
+    public void TakeSniperDamage()
+    {
+        health -= 50;
+        if(health <= 0)
+        {
+            Destroy(gameObject);
+            //other functions i want to happen
+        }
+    }
 }

@@ -5,32 +5,46 @@ public class Player : MonoBehaviour
 {
 
     public static Player instance;
+    
+    [Header("Player Crap")]
     public Rigidbody2D rb2d;
     public float moveSpeed = 2f;
     private Vector2 moveInput;
     private Vector2 mouseInput;
     public float mouseSensitivity = 1f;
     public Camera cam;
+
+    [Header("Pistol Crap")]
     public GameObject bulletImpact;
     public int currentAmmo;
-
     public Animator roboAnim;
+    public Animator roboAnim2;
+
+    private int gunChoice;
+    public GameObject[] roboHands;
+    public float cooldown = 30f;
+    public float timer = 0f;
+    public GameObject sniperImpact;
+    public bool pistolUp = true;
 
     private void Awake ()
     {
         instance = this;
+        roboHands[0].SetActive(true);
+        roboHands[1].SetActive(false);
+        pistolUp = true;
     }
-
 
     void Start()
     {
         moveSpeed = 2f;
+        roboAnim.SetTrigger("start");
+        timer += Time.deltaTime;
     }
 
     void Update()
     {
-
-
+        //moveSpeed crap
         if (Input.GetKey(KeyCode.LeftShift))
         {
             moveSpeed = 3f;
@@ -40,12 +54,36 @@ public class Player : MonoBehaviour
             moveSpeed = 2f;
         }
 
-        if (Input.GetKeyDown(KeyCode.R) && currentAmmo < 200)
+        //reload order
+        if (Input.GetKeyDown(KeyCode.R) && (currentAmmo < 200) && (pistolUp = true))
         {
             StartCoroutine(ReloadSequence());
         }
-        
 
+        //weapon swap crap
+        if (Input.GetKey(KeyCode.Alpha1) && (pistolUp = false))
+        {
+            roboAnim.SetTrigger("sniperPistol");
+            StartCoroutine(swapCooldown());
+            roboHands[0].SetActive(true);
+            roboHands[1].SetActive(false);
+            pistolUp = true;
+
+        }
+        if (Input.GetKey(KeyCode.Alpha2) && (pistolUp = true))
+        {
+            roboAnim.SetTrigger("pistolSniper");
+            StartCoroutine(swapCooldown());
+            roboHands[0].SetActive(false);
+            roboHands[1].SetActive(true);
+            pistolUp = false;
+            roboAnim.SetTrigger("sniperWake");
+            if (timer >= cooldown)
+            {
+                timer = 0f;
+            }
+        }
+        
         //movement crap
         moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         Vector3 moveHorizontal = transform.up * -moveInput.x;
@@ -58,32 +96,37 @@ public class Player : MonoBehaviour
         cam.transform.localRotation = Quaternion.Euler(cam.transform.localRotation.eulerAngles + new Vector3(0f, mouseInput.y, 0f));
 
         //shooting crap
-        if (Input.GetMouseButton(0) && currentAmmo > 0)
+        //pistol
+        if (pistolUp == true)
         {
-            roboAnim.SetBool("isShooting", true);
-            Ray ray = cam.ViewportPointToRay(new Vector3(.5f, .5f, 0f));
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
+            if (Input.GetMouseButton(0) && currentAmmo > 0)
             {
-                Instantiate(bulletImpact, hit.point, transform.rotation);
-                //Debug.Log("Im looking at " + hit.transform.name);
-
-                if(hit.transform.tag == "Enemy")
+                roboAnim.SetBool("isShooting", true);
+                Ray ray = cam.ViewportPointToRay(new Vector3(.5f, .5f, 0f));
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit))
                 {
-                    hit.transform.parent.GetComponent<ED209>().TakeDamage();
+                    Instantiate(bulletImpact, hit.point, transform.rotation);
+                    //Debug.Log("Im looking at " + hit.transform.name);
+
+                    if(hit.transform.tag == "Enemy")
+                    {
+                        hit.transform.parent.GetComponent<ED209>().TakeDamage();
+                    }
                 }
+                else
+                {
+                    //Debug.Log("Im looking at nothing");
+                }
+                currentAmmo--;
             }
             else
             {
-                Debug.Log("Im looking at nothing");
+                roboAnim.SetBool("isShooting", false);
             }
-            currentAmmo--;
-        }
-        else
-        {
-            roboAnim.SetBool("isShooting", false);
         }
 
+        //lets the reload anim play before reloading
         IEnumerator ReloadSequence()
         {
             roboAnim.SetTrigger("isReloading");
@@ -91,11 +134,45 @@ public class Player : MonoBehaviour
             Reload();
         }
 
+        //reloads
         void Reload()
         {
             currentAmmo = 200;
         }
 
+        IEnumerator swapCooldown()
+        {
+            yield return new WaitForSeconds(1.1f);
+        }
+
+        //sniper
+        if (pistolUp == false)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                roboAnim.SetTrigger("sniperShot");
+                Ray ray = cam.ViewportPointToRay(new Vector3(.5f, .5f, 0f));
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit))
+                {
+                    Instantiate(sniperImpact, hit.point, transform.rotation);
+                    //Debug.Log("Im looking at " + hit.transform.name);
+
+                    if(hit.transform.tag == "Enemy")
+                    {
+                        hit.transform.parent.GetComponent<ED209>().TakeSniperDamage();
+                    }
+                }
+                StartCoroutine(swapCooldown());
+                roboAnim.SetTrigger("sniperPistol");
+                pistolUp = true;
+                roboHands[0].SetActive(true);
+                roboHands[1].SetActive(false);
+                StartCoroutine(swapCooldown());
+            }
+        }
+
+        // moving animation stuff
         if (moveInput != Vector2.zero)
         {
             roboAnim.SetBool("isMoving", true);
