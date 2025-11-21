@@ -5,6 +5,9 @@ public class Player : MonoBehaviour
 {
 
     public static Player instance;
+    private int gunChoice;
+    public GameObject[] roboHands;
+    public bool pistolUp = true; 
     
     [Header("Player Crap")]
     public Rigidbody2D rb2d;
@@ -20,12 +23,11 @@ public class Player : MonoBehaviour
     public Animator roboAnim;
     public Animator roboAnim2;
 
-    private int gunChoice;
-    public GameObject[] roboHands;
+    [Header("Sniper Crap")]
     public float cooldown = 30f;
     public float timer = 0f;
     public GameObject sniperImpact;
-    public bool pistolUp = true;
+
 
     private void Awake ()
     {
@@ -39,11 +41,13 @@ public class Player : MonoBehaviour
     {
         moveSpeed = 2f;
         roboAnim.SetTrigger("start");
-        timer += Time.deltaTime;
+        timer = cooldown;
     }
 
     void Update()
     {
+
+        timer += Time.deltaTime;
         //moveSpeed crap
         if (Input.GetKey(KeyCode.LeftShift))
         {
@@ -55,13 +59,13 @@ public class Player : MonoBehaviour
         }
 
         //reload order
-        if (Input.GetKeyDown(KeyCode.R) && (currentAmmo < 200) && (pistolUp = true))
+        if (Input.GetKeyDown(KeyCode.R) && (currentAmmo < 200) && (pistolUp == true))
         {
             StartCoroutine(ReloadSequence());
         }
 
         //weapon swap crap
-        if (Input.GetKey(KeyCode.Alpha1) && (pistolUp = false))
+        if (Input.GetKey(KeyCode.Alpha1) && (pistolUp == false))
         {
             roboAnim.SetTrigger("sniperPistol");
             StartCoroutine(swapCooldown());
@@ -70,7 +74,7 @@ public class Player : MonoBehaviour
             pistolUp = true;
 
         }
-        if (Input.GetKey(KeyCode.Alpha2) && (pistolUp = true))
+        if (Input.GetKey(KeyCode.Alpha2) && (pistolUp == true))
         {
             roboAnim.SetTrigger("pistolSniper");
             StartCoroutine(swapCooldown());
@@ -148,7 +152,7 @@ public class Player : MonoBehaviour
         //sniper
         if (pistolUp == false)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && timer >= cooldown)
             {
                 roboAnim.SetTrigger("sniperShot");
                 Ray ray = cam.ViewportPointToRay(new Vector3(.5f, .5f, 0f));
@@ -182,4 +186,11 @@ public class Player : MonoBehaviour
             roboAnim.SetBool("isMoving", false);
         }
     }
+
+
+
+
+
+
+
 }

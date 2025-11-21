@@ -181,7 +181,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &184619821
 Transform:
   m_ObjectHideFlags: 0
@@ -774,8 +774,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000015259, y: -0.00019836}
-  m_SizeDelta: {x: 800, y: 450.59}
+  m_AnchoredPosition: {x: 0.000015259, y: 0.25548}
+  m_SizeDelta: {x: 800, y: 450.08}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1142405357
 MonoBehaviour:
@@ -2879,6 +2879,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c237268936f26bf41a2e09efac9c67ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roboHands:
+  - {fileID: 1404850029}
+  - {fileID: 1294913760}
+  pistolUp: 1
   rb2d: {fileID: 2147429853}
   moveSpeed: 5
   mouseSensitivity: 1
@@ -2887,13 +2891,9 @@ MonoBehaviour:
   currentAmmo: 200
   roboAnim: {fileID: 1404850033}
   roboAnim2: {fileID: 1294913762}
-  roboHands:
-  - {fileID: 1404850029}
-  - {fileID: 1294913760}
   cooldown: 30
   timer: 0
   sniperImpact: {fileID: 1750437941529308688, guid: dbfc15c265ab49f4c9f22b93ac978d92, type: 3}
-  pistolUp: 1
 --- !u!4 &2147429855
 Transform:
   m_ObjectHideFlags: 0
