@@ -109,6 +109,7 @@ public class Player : MonoBehaviour
             {
                 if (Input.GetMouseButton(0) && currentAmmo > 0)
                 {
+                    //pistol sfx
                     roboAnim.SetBool("isShooting", true);
                     Ray ray = cam.ViewportPointToRay(new Vector3(.5f, .5f, 0f));
                     RaycastHit hit;
@@ -158,6 +159,7 @@ public class Player : MonoBehaviour
             {
                 if (Input.GetMouseButtonDown(0) && timer >= cooldown)
                 {
+                    //sniper sfx
                     roboAnim.SetTrigger("sniperShot");
                     Ray ray = cam.ViewportPointToRay(new Vector3(.5f, .5f, 0f));
                     RaycastHit hit;
@@ -200,6 +202,7 @@ public class Player : MonoBehaviour
     public void TakeDamage(int damageAmount)
     {
         currentHealth -= damageAmount;
+        //richochet sfx
         if(currentHealth <= 0)
         {
             deadScreen.SetActive(true);
@@ -210,6 +213,7 @@ public class Player : MonoBehaviour
     public void AddHealth(int healAmount)
     {
         currentHealth += healAmount;
+        //heal sfx
         if(currentHealth > maxHealth)
         {
             currentHealth = maxHealth;
