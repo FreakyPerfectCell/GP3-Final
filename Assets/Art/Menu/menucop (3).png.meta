@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: efa3e0351e8c58f49bb08e15a11eee0b
+guid: ca11055aa1e40ac46986a42a31bfdbf9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7168459151529708978
-    second: cellingTile1_0
+      213: -7297065338563270874
+    second: menucop (3)_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -49,9 +49,9 @@ TextureImporter:
   spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 0
+  alignment: 7
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: cellingTile1_0
+      name: menucop (3)_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 126
         y: 0
-        width: 1024
-        height: 1024
+        width: 465
+        height: 392
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e427c2eb164848c90800000000000000
-      internalID: -7168459151529708978
+      spriteID: 627ee107cbd9bba90800000000000000
+      internalID: -7297065338563270874
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      cellingTile1_0: -7168459151529708978
+      menucop (3)_0: -7297065338563270874
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
