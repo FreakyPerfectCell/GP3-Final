@@ -488,7 +488,7 @@ GameObject:
   - component: {fileID: 679138749}
   - component: {fileID: 679138748}
   - component: {fileID: 679138747}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: EventSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -780,7 +780,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 829551965}
-        m_TargetAssemblyTypeName: ReloadScene, Assembly-CSharp
+        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
         m_MethodName: ResetScene
         m_Mode: 1
         m_Arguments:
@@ -3762,7 +3762,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7713781200916953058, guid: 23bd69b181cd8164aaba88512f8be06b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8318882456560445024, guid: 23bd69b181cd8164aaba88512f8be06b, type: 3}
       propertyPath: m_LocalPosition.x
