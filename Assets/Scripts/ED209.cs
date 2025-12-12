@@ -9,6 +9,12 @@ public class ED209 : MonoBehaviour
     public Rigidbody2D rb;
     public float moveSpeed;
 
+    public bool shouldShoot;
+    public float fireRate = .5f;
+    private float shotCounter;
+    public GameObject bullet;
+    public Transform firePoint;
+
 
     void Start()
     {
@@ -21,6 +27,15 @@ public class ED209 : MonoBehaviour
         {
             Vector3 playerDirection = Player.instance.transform.position - transform.position;
             rb.linearVelocity = playerDirection.normalized * moveSpeed;
+            if(shouldShoot)
+            {
+                shotCounter -= Time.deltaTime;
+                if(shotCounter <= 0)
+                {
+                    Instantiate(bullet, firePoint.position, firePoint.rotation);
+                    shotCounter = fireRate;
+                }
+            }
         }
         else
         {
