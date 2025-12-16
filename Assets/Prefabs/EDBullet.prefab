@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8141677815943538078}
   - component: {fileID: 263982698817340271}
   - component: {fileID: 3879976142164553806}
+  - component: {fileID: -2174610028002026533}
   m_Layer: 0
   m_Name: EDBullet
   m_TagString: Untagged
@@ -113,6 +114,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-2174610028002026533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394968041272603213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b122f8bb98425f643962327197483bc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifetime: 5
 --- !u!1 &5154137740873355091
 GameObject:
   m_ObjectHideFlags: 0

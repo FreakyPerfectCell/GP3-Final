@@ -15,12 +15,6 @@ public class ED209 : MonoBehaviour
     public GameObject bullet;
     public Transform firePoint;
 
-
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
         if(Vector3.Distance(transform.position, Player.instance.transform.position) < playerRange)

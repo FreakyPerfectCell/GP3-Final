@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
@@ -13,7 +15,7 @@ public class Player : MonoBehaviour
     public int currentHealth;
     public int maxHealth = 100;
     public GameObject deadScreen;
-    private bool hasDied;
+    public bool hasDied;
     
     [Header("Player Crap")]
     public Rigidbody2D rb2d;
@@ -34,6 +36,15 @@ public class Player : MonoBehaviour
     public float timer = 0f;
     public Animator roboAnim2;
 
+    [Header("UI Crap")]
+    public TextMeshProUGUI healthText;
+    public TextMeshProUGUI ammoText;
+
+    [Header("SFX Crap")]
+    public AudioSource audioSource;
+    public AudioClip damage;
+    public AudioClip repair;
+
 
     private void Awake ()
     {
@@ -45,7 +56,10 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         currentHealth = maxHealth;
+        healthText.text = currentHealth.ToString() + "%";
+        ammoText.text = currentAmmo.ToString() + " / 200";
         moveSpeed = 2f;
         roboAnim.SetTrigger("start");
         timer = cooldown;
@@ -128,6 +142,7 @@ public class Player : MonoBehaviour
                         //Debug.Log("Im looking at nothing");
                     }
                     currentAmmo--;
+                    UpdateAmmoUI();
                 }
                 else
                 {
@@ -147,6 +162,7 @@ public class Player : MonoBehaviour
             void Reload()
             {
                 currentAmmo = 200;
+                ammoText.text = currentAmmo.ToString() + " / 200";
             }
 
             IEnumerator swapCooldown()
@@ -202,21 +218,32 @@ public class Player : MonoBehaviour
     public void TakeDamage(int damageAmount)
     {
         currentHealth -= damageAmount;
-        //richochet sfx
+        audioSource.PlayOneShot(damage);
         if(currentHealth <= 0)
         {
+            audioSource = null;
             deadScreen.SetActive(true);
             hasDied = true;
+            currentHealth = 0;
         }
+
+        healthText.text = currentHealth.ToString() + "%";
     }
 
     public void AddHealth(int healAmount)
     {
         currentHealth += healAmount;
-        //heal sfx
+        audioSource.PlayOneShot(repair);
         if(currentHealth > maxHealth)
         {
             currentHealth = maxHealth;
         }
+
+        healthText.text = currentHealth.ToString() + "%";
+    }
+
+    public void UpdateAmmoUI()
+    {
+        ammoText.text = currentAmmo.ToString() + " / 200";
     }
 }
