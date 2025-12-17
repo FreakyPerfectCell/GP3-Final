@@ -1,16 +1,18 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ED209 : MonoBehaviour
 {
 
-    public int health = 1000;
+    public int health = 10000;
 
-    public float playerRange = 10f;
+    public float shootRange = 10f;
+    public float playerRange = 15f;
     public Rigidbody2D rb;
     public float moveSpeed;
 
     public bool shouldShoot;
-    public float fireRate = .5f;
+    public float fireRate = .7f;
     private float shotCounter;
     public GameObject bullet;
     public Transform firePoint;
@@ -39,20 +41,24 @@ public class ED209 : MonoBehaviour
 
     public void TakeDamage()
     {
+        AudioManager.instance.PlayEnemyShot();
         health--;
         if(health <= 0)
         {
             Destroy(gameObject);
+            SceneManager.LoadScene("Ending");
             //other functions i want to happen
         }
     }
 
     public void TakeSniperDamage()
     {
+        AudioManager.instance.PlayEnemyExplode();
         health -= 50;
         if(health <= 0)
         {
             Destroy(gameObject);
+            SceneManager.LoadScene("Ending");
             //other functions i want to happen
         }
     }

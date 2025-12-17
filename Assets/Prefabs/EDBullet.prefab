@@ -84,7 +84,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 182f95634d46b1148864d1cbdc4aee8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 2
+  damageAmount: 4
   bulletSpeed: 2
   rb2d: {fileID: 3879976142164553806}
 --- !u!50 &3879976142164553806

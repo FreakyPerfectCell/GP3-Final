@@ -8,7 +8,6 @@ public class Player : MonoBehaviour
 
     public static Player instance;
     private int gunChoice;
-    public GameObject[] roboHands;
 
     [Header("Misc Crap")]
     public bool pistolUp = true; 
@@ -37,26 +36,23 @@ public class Player : MonoBehaviour
     public Animator roboAnim2;
 
     [Header("UI Crap")]
+    public GameObject[] roboHands;
     public TextMeshProUGUI healthText;
     public TextMeshProUGUI ammoText;
-
-    [Header("SFX Crap")]
-    public AudioSource audioSource;
-    public AudioClip damage;
-    public AudioClip repair;
-
+    public GameObject[] backdrop;
 
     private void Awake ()
     {
         instance = this;
         roboHands[0].SetActive(true);
         roboHands[1].SetActive(false);
+        backdrop[0].SetActive(true);
+        backdrop[1].SetActive(false);
         pistolUp = true;
     }
 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
         currentHealth = maxHealth;
         healthText.text = currentHealth.ToString() + "%";
         ammoText.text = currentAmmo.ToString() + " / 200";
@@ -70,7 +66,13 @@ public class Player : MonoBehaviour
         if(!hasDied)
         { 
             timer += Time.deltaTime;
-            //moveSpeed crap
+            if (timer >= cooldown)
+            {
+                //AudioManager.instance.PlayCooldown();
+                //anything else
+            }
+
+            //sprint crap
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 moveSpeed = 3f;
@@ -83,6 +85,7 @@ public class Player : MonoBehaviour
             //reload order
             if (Input.GetKeyDown(KeyCode.R) && (currentAmmo < 200) && (pistolUp == true))
             {
+                AudioManager.instance.PlayReload();
                 StartCoroutine(ReloadSequence());
             }
 
@@ -107,6 +110,7 @@ public class Player : MonoBehaviour
             }
         
             //movement crap
+            //step sfx somewhere here
             moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
             Vector3 moveHorizontal = transform.up * -moveInput.x;
             Vector3 moveVertical = transform.right * moveInput.y;
@@ -117,13 +121,24 @@ public class Player : MonoBehaviour
             transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z - mouseInput.x);
             cam.transform.localRotation = Quaternion.Euler(cam.transform.localRotation.eulerAngles + new Vector3(0f, mouseInput.y, 0f));
 
+            if (currentHealth <= 50)
+            {
+                backdrop[0].SetActive(false);
+                backdrop[1].SetActive(true);
+            }
+            if (currentHealth <= 25)
+            {
+                backdrop[0].SetActive(false);
+                backdrop[1].SetActive(false);
+            }
+
             //shooting crap
             //pistol
             if (pistolUp == true)
             {
                 if (Input.GetMouseButton(0) && currentAmmo > 0)
                 {
-                    //pistol sfx
+                    AudioManager.instance.PlayGunShot();
                     roboAnim.SetBool("isShooting", true);
                     Ray ray = cam.ViewportPointToRay(new Vector3(.5f, .5f, 0f));
                     RaycastHit hit;
@@ -175,7 +190,7 @@ public class Player : MonoBehaviour
             {
                 if (Input.GetMouseButtonDown(0) && timer >= cooldown)
                 {
-                    //sniper sfx
+                    AudioManager.instance.PlaySniper();
                     roboAnim.SetTrigger("sniperShot");
                     Ray ray = cam.ViewportPointToRay(new Vector3(.5f, .5f, 0f));
                     RaycastHit hit;
@@ -218,10 +233,10 @@ public class Player : MonoBehaviour
     public void TakeDamage(int damageAmount)
     {
         currentHealth -= damageAmount;
-        audioSource.PlayOneShot(damage);
+        AudioManager.instance.PlayPlayerHurt();
         if(currentHealth <= 0)
         {
-            audioSource = null;
+            AudioManager.instance.StopAll();
             deadScreen.SetActive(true);
             hasDied = true;
             currentHealth = 0;
@@ -233,7 +248,7 @@ public class Player : MonoBehaviour
     public void AddHealth(int healAmount)
     {
         currentHealth += healAmount;
-        audioSource.PlayOneShot(repair);
+        AudioManager.instance.PlayHealth();
         if(currentHealth > maxHealth)
         {
             currentHealth = maxHealth;
