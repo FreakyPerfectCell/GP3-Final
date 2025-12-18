@@ -468,7 +468,7 @@ Transform:
   m_GameObject: {fileID: 184619820}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.46, y: -2.85, z: 0}
+  m_LocalPosition: {x: -1.1, y: -2.19, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9055,7 +9055,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60015031f643c8146bda51c2d0b8da07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  repairAmounts: 3
+  repairAmounts: 2
   healAmount: 50
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

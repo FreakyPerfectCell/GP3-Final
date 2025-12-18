@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ce378834cb3190345b6d0494b95bcb81
+guid: 308cdcb4dc54d4e4580de26da8285ed9
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -103,9 +103,9 @@ TextureImporter:
       name: EDwalk1S_0
       rect:
         serializedVersion: 2
-        x: 44
+        x: 8
         y: 37
-        width: 379
+        width: 415
         height: 414
       alignment: 0
       pivot: {x: 0, y: 0}
