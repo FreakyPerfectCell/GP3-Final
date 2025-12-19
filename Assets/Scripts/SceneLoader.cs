@@ -34,6 +34,11 @@ public class SceneLoader : MonoBehaviour
         {
             SceneManager.LoadScene("Menu");
         }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            SceneManager.LoadScene("Game");
+        }
     }
 }
 
